@@ -1,3 +1,5 @@
 import 'package:flutter/material.dart';
 
-abstract class LoginViewModel extends State {}
+abstract class LoginViewModel extends State {
+  bool obscuredPassword = true;
+}
