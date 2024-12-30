@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:work_time/pages/home/home.dart';
 import 'package:work_time/pages/login/login_view_model.dart';
 
 class LoginView extends LoginViewModel {
@@ -70,7 +71,13 @@ class LoginView extends LoginViewModel {
                     width: MediaQuery.sizeOf(context).width * 0.4,
                     height: MediaQuery.sizeOf(context).height * 0.07,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home(),
+                            ));
+                      },
                       style: ButtonStyle(
                           backgroundColor:
                               WidgetStateProperty.all(Color(0xFF22890B))),
