@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:work_time/core/consts.dart';
 import 'package:work_time/pages/login/login.dart';
 
 void main() {
@@ -12,7 +13,20 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: Colors.red, useMaterial3: false),
+        theme: ThemeData(
+            fontFamily: "Roboto",
+            primaryColor: primaryColor,
+            colorScheme: ColorScheme(
+                onSurface: Colors.white,
+                surface: Colors.white,
+                onError: primaryColorVariant,
+                error: primaryColorVariant,
+                onSecondary: secundaryColor,
+                onPrimary: primaryColor,
+                brightness: Brightness.light,
+                primary: primaryColor,
+                secondary: secundaryColor),
+            useMaterial3: false),
         home: Login());
   }
 }

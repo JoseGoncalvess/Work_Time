@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:work_time/core/consts.dart';
 import 'package:work_time/pages/home/home.dart';
 import 'package:work_time/pages/login/login_view_model.dart';
 
@@ -8,7 +9,7 @@ class LoginView extends LoginViewModel {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          color: Color(0xFF212121),
+          color: backgroudColor,
           width: MediaQuery.sizeOf(context).width,
           height: MediaQuery.sizeOf(context).height,
           child: Column(
@@ -47,8 +48,9 @@ class LoginView extends LoginViewModel {
                           obscuringCharacter: "*",
                           keyboardType: TextInputType.visiblePassword,
                           decoration: InputDecoration(
-                              suffixIconColor:
-                                  obscuredPassword ? Colors.red : Colors.grey,
+                              suffixIconColor: obscuredPassword
+                                  ? primaryColorVariant
+                                  : Colors.grey,
                               suffixIcon: IconButton(
                                   onPressed: () {
                                     setState(() {
@@ -80,8 +82,11 @@ class LoginView extends LoginViewModel {
                       },
                       style: ButtonStyle(
                           backgroundColor:
-                              WidgetStateProperty.all(Color(0xFF22890B))),
-                      child: Text("Login"),
+                              WidgetStateProperty.all(optionalColor)),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                   GestureDetector(
