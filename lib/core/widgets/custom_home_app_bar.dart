@@ -20,7 +20,9 @@ class CustomHomeAppBar extends StatelessWidget implements PreferredSize {
           IconButton(
             iconSize: MediaQuery.sizeOf(context).height * 0.04,
             tooltip: "MENU",
-            onPressed: () {},
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
             icon: Icon(Icons.menu),
           ),
           Padding(

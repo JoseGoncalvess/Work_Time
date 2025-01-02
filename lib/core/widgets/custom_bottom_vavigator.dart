@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:work_time/core/consts.dart';
 
 class CustomBottomVavigator extends StatelessWidget {
   final int selectedIndex;
@@ -44,15 +45,18 @@ class CustomBottomVavigator extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: index == selectedIndex ? Colors.amber[800] : Colors.grey,
+                color: index == selectedIndex
+                    ? primaryColorVariant
+                    : secundaryColor,
               ),
               Text(
                 label,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color:
-                      index == selectedIndex ? Colors.amber[800] : Colors.grey,
-                ),
+                    color: index == selectedIndex
+                        ? primaryColor
+                        : secundaryColorVariant,
+                    fontWeight: FontWeight.w500),
               ),
             ],
           ),
