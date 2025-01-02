@@ -59,7 +59,7 @@ class TimerIndicater extends StatelessWidget {
                 style: TextStyle(
                     fontSize: MediaQuery.sizeOf(context).height * 0.02,
                     fontWeight: FontWeight.w700,
-                    color: colorHours),
+                    color: Colors.white),
               ),
             ],
           )

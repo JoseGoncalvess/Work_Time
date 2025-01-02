@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:work_time/core/consts.dart';
 
 import 'timer_indicater.dart';
 
@@ -10,7 +11,7 @@ class GraficBancoHoras extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 16),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 191, 0),
+        color: backgroudColor,
         borderRadius: BorderRadius.circular(12),
       ),
       height: MediaQuery.sizeOf(context).height * 0.2,
@@ -37,14 +38,14 @@ class GraficBancoHoras extends StatelessWidget {
                 TimerIndicater(
                   iconHours: Icons.business_center_rounded,
                   hoursWorkin: "126",
-                  colorHours: Colors.red,
+                  colorHours: primaryColorVariant,
                   percentHours: 70,
                   title: "Horas Trabalhadas",
                 ),
                 TimerIndicater(
                   iconHours: Icons.more_time_outlined,
                   hoursWorkin: "54",
-                  colorHours: Colors.green,
+                  colorHours: optionalColor,
                   percentHours: 30,
                   title: "Horas Extra",
                 )
