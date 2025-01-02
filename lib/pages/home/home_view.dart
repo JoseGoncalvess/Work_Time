@@ -1,10 +1,13 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:work_time/core/consts.dart';
 import 'package:work_time/pages/home/home_view_model.dart';
 import '../../core/helpers/date_formater.dart';
+import '../../core/widgets/custom_drawer/custom_drawer.dart';
 import '../../core/widgets/custom_home_app_bar.dart';
 import '../../core/widgets/custom_bottom_vavigator.dart';
 import '../../core/widgets/grafic_db_time/grafic_banco_horas.dart';
+import '../../core/widgets/real_time_clok.dart';
 
 class HomeView extends HomeViewModel {
   @override
@@ -15,6 +18,7 @@ class HomeView extends HomeViewModel {
           heigthWidget: MediaQuery.of(context).size.height * 0.12,
           backgroundColor: Colors.white,
         ),
+        drawer: CustomDrawer(),
         body: SingleChildScrollView(
           child: SizedBox(
             width: MediaQuery.sizeOf(context).width,
@@ -60,8 +64,9 @@ class HomeView extends HomeViewModel {
                                         spreadRadius: 1,
                                         blurStyle: BlurStyle.outer)
                                   ],
-                                  color:
-                                      index.isEven ? Colors.red : Colors.green,
+                                  color: index.isEven
+                                      ? primaryColorVariant
+                                      : optionalColor,
                                   borderRadius: BorderRadius.circular(12)),
                               width: MediaQuery.sizeOf(context).width * 0.33,
                               height: MediaQuery.sizeOf(context).height * 0.01,
@@ -84,8 +89,8 @@ class HomeView extends HomeViewModel {
                                     DateFormater.formaterDate
                                         .format(DateTime.now()),
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black),
+                                        fontWeight: FontWeight.w700,
+                                        color: backgroudColor),
                                   )
                                 ],
                               ),
@@ -109,10 +114,11 @@ class HomeView extends HomeViewModel {
                           ),
                           Icon(Icons.arrow_forward)
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
+                RealTimeClok()
               ],
             ),
           ),
@@ -129,16 +135,17 @@ class HomeView extends HomeViewModel {
           width: 100,
           height: 90,
           child: FloatingActionButton(
-            backgroundColor: Colors.redAccent,
+            backgroundColor: primaryColor,
             onPressed: () {},
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(size: 25, Icons.fingerprint),
+                Icon(size: 25, Icons.fingerprint, color: Colors.white),
                 Text(
                   "Registar Ponto",
                   textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
                 )
               ],
             ),
