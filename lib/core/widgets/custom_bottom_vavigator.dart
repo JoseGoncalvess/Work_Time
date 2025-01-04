@@ -5,12 +5,14 @@ class CustomBottomVavigator extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onItemTapped;
   final double iconSpacing;
+  final List<Widget>? pages;
 
   const CustomBottomVavigator({
     super.key,
     required this.selectedIndex,
     required this.onItemTapped,
-    this.iconSpacing = 24.0, // Valor padrão para espaçamento
+    this.iconSpacing = 24.0,
+    this.pages, // Valor padrão para espaçamento
   });
 
   @override
@@ -21,24 +23,26 @@ class CustomBottomVavigator extends StatelessWidget {
       notchMargin: 1.0,
       child: Row(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildIcon(Icons.home, 'Home', 0),
-          _buildIcon(Icons.note_alt, 'Solicitações', 1),
-          SizedBox(width: iconSpacing),
-          _buildIcon(Icons.person, 'Perfil', 2),
-          _buildIcon(Icons.settings, 'Ajustes', 3),
+          _buildIcon(Icons.note_alt, 'Solicitações', 1, pages![0]),
+          // SizedBox(width: iconSpacing),
+          _buildIcon(Icons.person, 'Perfil', 2, pages![0]),
         ],
       ),
     );
   }
 
-  Widget _buildIcon(IconData icon, String label, int index) {
+  Widget _buildIcon(IconData icon, String label, int index, Widget? page) {
     return Builder(
       builder: (context) => GestureDetector(
-        onTap: () => onItemTapped(index),
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => page!,
+            )),
         child: SizedBox(
-          width: MediaQuery.sizeOf(context).width * 0.2,
+          width: MediaQuery.sizeOf(context).width * 0.22,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

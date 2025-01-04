@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:work_time/core/consts.dart';
+import 'package:work_time/pages/home/home.dart';
 import 'package:work_time/pages/home/home_view_model.dart';
 import '../../core/helpers/date_formater.dart';
 import '../../core/widgets/custom_drawer/custom_drawer.dart';
@@ -8,6 +9,7 @@ import '../../core/widgets/custom_home_app_bar.dart';
 import '../../core/widgets/custom_bottom_vavigator.dart';
 import '../../core/widgets/grafic_db_time/grafic_banco_horas.dart';
 import '../../core/widgets/real_time_clok.dart';
+import '../bottom pages/requests_pages/requests.dart';
 
 class HomeView extends HomeViewModel {
   @override
@@ -124,6 +126,7 @@ class HomeView extends HomeViewModel {
           ),
         ),
         bottomNavigationBar: CustomBottomVavigator(
+          pages: [Requests()],
           onItemTapped: (value) {
             log(value.toString());
           },
