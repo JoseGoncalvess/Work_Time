@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:work_time/core/consts.dart';
-import 'package:work_time/pages/home/home.dart';
 import 'package:work_time/pages/home/home_view_model.dart';
 import '../../core/helpers/date_formater.dart';
 import '../../core/widgets/custom_drawer/custom_drawer.dart';
@@ -21,108 +20,105 @@ class HomeView extends HomeViewModel {
           backgroundColor: Colors.white,
         ),
         drawer: CustomDrawer(),
-        body: SingleChildScrollView(
-          child: SizedBox(
-            width: MediaQuery.sizeOf(context).width,
-            height: MediaQuery.sizeOf(context).height,
-            child: Column(
-              children: [
-                GraficBancoHoras(),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).height * 0.26,
-                  child: Column(
-                    spacing: 3,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            textAlign: TextAlign.left,
-                            "Últimos Registros",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize:
-                                    MediaQuery.sizeOf(context).height * 0.034),
-                          ),
+        body: SizedBox(
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height,
+          child: Column(
+            children: [
+              GraficBancoHoras(),
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width,
+                height: MediaQuery.sizeOf(context).height * 0.26,
+                child: Column(
+                  spacing: 3,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          textAlign: TextAlign.left,
+                          "Últimos Registros",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  MediaQuery.sizeOf(context).height * 0.034),
                         ),
                       ),
-                      SizedBox(
-                        width: MediaQuery.sizeOf(context).width,
-                        height: MediaQuery.sizeOf(context).height * 0.15,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 4,
-                          itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                        color: const Color(0x489E9E9E),
-                                        blurRadius: 5,
-                                        spreadRadius: 1,
-                                        blurStyle: BlurStyle.outer)
-                                  ],
-                                  color: index.isEven
-                                      ? primaryColorVariant
-                                      : optionalColor,
-                                  borderRadius: BorderRadius.circular(12)),
-                              width: MediaQuery.sizeOf(context).width * 0.33,
-                              height: MediaQuery.sizeOf(context).height * 0.01,
-                              child: Column(
-                                spacing: 3,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    index.isEven ? Icons.logout : Icons.login,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    index.isEven ? "Saida" : "Entrada",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    DateFormater.formaterDate
-                                        .format(DateTime.now()),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        color: backgroudColor),
-                                  )
+                    ),
+                    SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height * 0.15,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 4,
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                boxShadow: <BoxShadow>[
+                                  BoxShadow(
+                                      color: const Color(0x489E9E9E),
+                                      blurRadius: 5,
+                                      spreadRadius: 1,
+                                      blurStyle: BlurStyle.outer)
                                 ],
-                              ),
+                                color: index.isEven
+                                    ? primaryColorVariant
+                                    : optionalColor,
+                                borderRadius: BorderRadius.circular(12)),
+                            width: MediaQuery.sizeOf(context).width * 0.33,
+                            height: MediaQuery.sizeOf(context).height * 0.01,
+                            child: Column(
+                              spacing: 3,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  index.isEven ? Icons.logout : Icons.login,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  index.isEven ? "Saida" : "Entrada",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  DateFormater.formaterDate
+                                      .format(DateTime.now()),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: backgroudColor),
+                                )
+                              ],
                             ),
                           ),
                         ),
                       ),
-                      Row(
-                        spacing: 5,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Text("Registros de Ponto",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize:
-                                        MediaQuery.sizeOf(context).height *
-                                            0.03)),
-                          ),
-                          Icon(Icons.arrow_forward)
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    Row(
+                      spacing: 5,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Text("Registros de Ponto",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: MediaQuery.sizeOf(context).height *
+                                      0.03)),
+                        ),
+                        Icon(Icons.arrow_forward)
+                      ],
+                    ),
+                  ],
                 ),
-                RealTimeClok()
-              ],
-            ),
+              ),
+              RealTimeClok()
+            ],
           ),
         ),
         bottomNavigationBar: CustomBottomVavigator(

@@ -44,7 +44,7 @@ class _RealTimeClokState extends State<RealTimeClok> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.sizeOf(context).width,
       height: MediaQuery.sizeOf(context).height * 0.25,
       child: Column(
