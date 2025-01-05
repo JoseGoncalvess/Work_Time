@@ -9,7 +9,7 @@ class RequestsView extends RequestsViewModel {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: primaryColorVariant,
+          backgroundColor: primaryColor,
           centerTitle: true,
           iconTheme: IconThemeData(
             color: Colors.white,
@@ -26,18 +26,19 @@ class RequestsView extends RequestsViewModel {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        body: SizedBox(
+        body: Container(
+          color: Colors.white,
           width: MediaQuery.sizeOf(context).width,
           height: MediaQuery.sizeOf(context).height,
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: 3,
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.all(8.0),
               child: AnimatedContainer(
                 curve: Curves.fastLinearToSlowEaseIn,
                 duration: Duration(seconds: 1),
                 decoration: BoxDecoration(
-                    color: secundaryColor,
+                    color: backgroudColor,
                     borderRadius: BorderRadius.circular(12)),
                 height: indexSelect == index
                     ? MediaQuery.sizeOf(context).height * 0.25
@@ -52,7 +53,7 @@ class RequestsView extends RequestsViewModel {
                         decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(23),
+                                topLeft: Radius.circular(12),
                                 bottomLeft: Radius.circular(12))),
                       ),
                     ),
@@ -73,7 +74,7 @@ class RequestsView extends RequestsViewModel {
                                         MediaQuery.sizeOf(context).height *
                                             0.023,
                                     fontWeight: FontWeight.w700,
-                                    color: Colors.white),
+                                    color: primaryColor),
                               ),
                               Row(
                                 children: [
@@ -84,7 +85,7 @@ class RequestsView extends RequestsViewModel {
                                             MediaQuery.sizeOf(context).height *
                                                 0.02,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.white),
+                                        color: primaryColor),
                                   ),
                                   Text(
                                     "11/01/2024",
@@ -93,7 +94,7 @@ class RequestsView extends RequestsViewModel {
                                             MediaQuery.sizeOf(context).height *
                                                 0.02,
                                         fontWeight: FontWeight.w600,
-                                        color: primaryColorVariant),
+                                        color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -106,7 +107,7 @@ class RequestsView extends RequestsViewModel {
                                             MediaQuery.sizeOf(context).height *
                                                 0.02,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.white),
+                                        color: primaryColor),
                                   ),
                                   Text(
                                     "Aprovado",
@@ -115,7 +116,7 @@ class RequestsView extends RequestsViewModel {
                                             MediaQuery.sizeOf(context).height *
                                                 0.02,
                                         fontWeight: FontWeight.w600,
-                                        color: primaryColorVariant),
+                                        color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -123,13 +124,14 @@ class RequestsView extends RequestsViewModel {
                                   ? Column(
                                       spacing: 2,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.center,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
                                           "Motivo: ",
                                           style: TextStyle(
+                                            color: primaryColor,
                                             fontSize: MediaQuery.sizeOf(context)
                                                     .height *
                                                 0.02,
@@ -159,6 +161,7 @@ class RequestsView extends RequestsViewModel {
                         child: IconButton(
                             onPressed: () => setIndex(index),
                             icon: Icon(
+                              color: Colors.white,
                               Icons.inbox_rounded,
                               semanticLabel: "Detalhes",
                               size: MediaQuery.sizeOf(context).height * 0.04,
