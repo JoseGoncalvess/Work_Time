@@ -11,7 +11,9 @@ class GraficBancoHoras extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 16),
       decoration: BoxDecoration(
-        color: backgroudColor,
+        gradient: LinearGradient(
+            transform: GradientRotation(65),
+            colors: [Color(0x63565454), secundaryColorVariant]),
         borderRadius: BorderRadius.circular(12),
       ),
       height: MediaQuery.sizeOf(context).height * 0.2,

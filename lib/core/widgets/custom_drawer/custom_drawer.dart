@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:work_time/core/consts.dart';
 import 'package:work_time/core/helpers/enum/drawe_enum_option.dart';
+import 'package:work_time/core/widgets/custom_circular_avatar.dart';
 import 'package:work_time/core/widgets/custom_drawer/custom_list_title.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final List<Widget> pages;
+  const CustomDrawer({super.key, required this.pages});
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +26,10 @@ class CustomDrawer extends StatelessWidget {
               spacing: 4,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  decoration: ShapeDecoration(
-                      shape: CircleBorder(
-                          eccentricity: 1,
-                          side: BorderSide(width: 2, color: Colors.red))),
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.white,
-                    child: Image.asset("assets/logo.png"),
-                  ),
-                ),
+                CustomCircularAvatar(
+                    sizeRadius: 30,
+                    imgSrc: "assets/logo.png",
+                    borderColor: Colors.red),
                 Text("REDE CAZA",
                     style: TextStyle(
                         color: Colors.white,
@@ -60,7 +55,13 @@ class CustomDrawer extends StatelessWidget {
                       (e) => CustomListTitle(
                         title: e.title,
                         iconOpt: e.icon,
-                        ontap: () {},
+                        ontap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => pages[e.index],
+                              ));
+                        },
                       ),
                     )
                     .toList()),

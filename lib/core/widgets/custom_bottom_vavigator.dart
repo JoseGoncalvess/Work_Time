@@ -12,7 +12,7 @@ class CustomBottomVavigator extends StatelessWidget {
     required this.selectedIndex,
     required this.onItemTapped,
     this.iconSpacing = 24.0,
-    this.pages, // Valor padrão para espaçamento
+    this.pages,
   });
 
   @override
@@ -26,8 +26,7 @@ class CustomBottomVavigator extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _buildIcon(Icons.note_alt, 'Solicitações', 1, pages![0]),
-          // SizedBox(width: iconSpacing),
-          _buildIcon(Icons.person, 'Perfil', 2, pages![0]),
+          _buildIcon(Icons.person, 'Perfil', 2, pages![1]),
         ],
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_circular_avatar.dart';
+
 class CustomHomeAppBar extends StatelessWidget implements PreferredSize {
   final Color backgroundColor;
   final double heigthWidget;
@@ -53,16 +55,10 @@ class CustomHomeAppBar extends StatelessWidget implements PreferredSize {
                             fontSize: MediaQuery.sizeOf(context).width * 0.025))
                   ],
                 ),
-                Container(
-                  decoration: ShapeDecoration(
-                      shape: CircleBorder(
-                          eccentricity: 1,
-                          side: BorderSide(width: 2, color: Colors.red))),
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.white,
-                    child: Image.asset("assets/logo.png"),
-                  ),
+                CustomCircularAvatar(
+                  sizeRadius: 30,
+                  imgSrc: "assets/logo.png",
+                  borderColor: Colors.red,
                 )
               ],
             ),
