@@ -8,6 +8,7 @@ import '../../core/widgets/custom_home_app_bar.dart';
 import '../../core/widgets/custom_bottom_vavigator.dart';
 import '../../core/widgets/grafic_db_time/grafic_banco_horas.dart';
 import '../../core/widgets/real_time_clok.dart';
+import '../bottom pages/perfil/perfil.dart';
 import '../bottom pages/requests_pages/requests.dart';
 
 class HomeView extends HomeViewModel {
@@ -19,7 +20,9 @@ class HomeView extends HomeViewModel {
           heigthWidget: MediaQuery.of(context).size.height * 0.12,
           backgroundColor: Colors.white,
         ),
-        drawer: CustomDrawer(),
+        drawer: CustomDrawer(
+          pages: pages,
+        ),
         body: SizedBox(
           width: MediaQuery.sizeOf(context).width,
           height: MediaQuery.sizeOf(context).height,
@@ -64,9 +67,8 @@ class HomeView extends HomeViewModel {
                                       spreadRadius: 1,
                                       blurStyle: BlurStyle.outer)
                                 ],
-                                color: index.isEven
-                                    ? primaryColorVariant
-                                    : optionalColor,
+                                color:
+                                    index.isEven ? primaryColor : optionalColor,
                                 borderRadius: BorderRadius.circular(12)),
                             width: MediaQuery.sizeOf(context).width * 0.33,
                             height: MediaQuery.sizeOf(context).height * 0.01,
@@ -90,7 +92,7 @@ class HomeView extends HomeViewModel {
                                       .format(DateTime.now()),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      color: backgroudColor),
+                                      color: secundaryColorVariant),
                                 )
                               ],
                             ),
@@ -122,7 +124,7 @@ class HomeView extends HomeViewModel {
           ),
         ),
         bottomNavigationBar: CustomBottomVavigator(
-          pages: [Requests()],
+          pages: [Requests(), Perfil()],
           onItemTapped: (value) {
             log(value.toString());
           },

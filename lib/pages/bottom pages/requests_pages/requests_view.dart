@@ -38,7 +38,11 @@ class RequestsView extends RequestsViewModel {
                 curve: Curves.fastLinearToSlowEaseIn,
                 duration: Duration(seconds: 1),
                 decoration: BoxDecoration(
-                    color: backgroudColor,
+                    border: Border.all(
+                        color: primaryColorVariant,
+                        width: 1,
+                        style: BorderStyle.solid),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(12)),
                 height: indexSelect == index
                     ? MediaQuery.sizeOf(context).height * 0.25
@@ -51,7 +55,7 @@ class RequestsView extends RequestsViewModel {
                       flex: 1,
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.green,
+                            color: optionalColor,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(12),
                                 bottomLeft: Radius.circular(12))),
@@ -74,7 +78,7 @@ class RequestsView extends RequestsViewModel {
                                         MediaQuery.sizeOf(context).height *
                                             0.023,
                                     fontWeight: FontWeight.w700,
-                                    color: primaryColor),
+                                    color: backgroudColor),
                               ),
                               Row(
                                 children: [
@@ -85,7 +89,7 @@ class RequestsView extends RequestsViewModel {
                                             MediaQuery.sizeOf(context).height *
                                                 0.02,
                                         fontWeight: FontWeight.w600,
-                                        color: primaryColor),
+                                        color: backgroudColor),
                                   ),
                                   Text(
                                     "11/01/2024",
@@ -94,7 +98,7 @@ class RequestsView extends RequestsViewModel {
                                             MediaQuery.sizeOf(context).height *
                                                 0.02,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.white),
+                                        color: secundaryColor),
                                   ),
                                 ],
                               ),
@@ -107,7 +111,7 @@ class RequestsView extends RequestsViewModel {
                                             MediaQuery.sizeOf(context).height *
                                                 0.02,
                                         fontWeight: FontWeight.w600,
-                                        color: primaryColor),
+                                        color: backgroudColor),
                                   ),
                                   Text(
                                     "Aprovado",
@@ -116,7 +120,7 @@ class RequestsView extends RequestsViewModel {
                                             MediaQuery.sizeOf(context).height *
                                                 0.02,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.white),
+                                        color: primaryColorVariant),
                                   ),
                                 ],
                               ),
@@ -131,7 +135,7 @@ class RequestsView extends RequestsViewModel {
                                         Text(
                                           "Motivo: ",
                                           style: TextStyle(
-                                            color: primaryColor,
+                                            color: backgroudColor,
                                             fontSize: MediaQuery.sizeOf(context)
                                                     .height *
                                                 0.02,
@@ -140,13 +144,14 @@ class RequestsView extends RequestsViewModel {
                                         ),
                                         Text(
                                           "Esqeuci de Bater o poto ao ir almoçar,sair as 12:30",
+                                          textAlign: TextAlign.justify,
                                           style: TextStyle(
                                               fontSize:
                                                   MediaQuery.sizeOf(context)
                                                           .height *
                                                       0.02,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.white),
+                                              fontWeight: FontWeight.w400,
+                                              color: primaryColorVariant),
                                         ),
                                       ],
                                     )
@@ -161,8 +166,12 @@ class RequestsView extends RequestsViewModel {
                         child: IconButton(
                             onPressed: () => setIndex(index),
                             icon: Icon(
-                              color: Colors.white,
-                              Icons.inbox_rounded,
+                              color: index == indexSelect
+                                  ? secundaryColor
+                                  : primaryColor,
+                              index == indexSelect
+                                  ? Icons.open_in_browser_rounded
+                                  : Icons.inbox_rounded,
                               semanticLabel: "Detalhes",
                               size: MediaQuery.sizeOf(context).height * 0.04,
                             )))
@@ -171,6 +180,11 @@ class RequestsView extends RequestsViewModel {
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: primaryColorVariant,
+          onPressed: () {},
+          child: Icon(color: Colors.white, Icons.new_label_rounded),
         ),
       ),
     );
