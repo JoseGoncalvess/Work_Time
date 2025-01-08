@@ -9,20 +9,21 @@ class LoginView extends LoginViewModel {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          color: backgroudColor,
+          color: Colors.white,
           width: MediaQuery.sizeOf(context).width,
           height: MediaQuery.sizeOf(context).height,
           child: Column(
+            spacing: 4,
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              Image.asset("assets/logo.png", scale: 1.5),
               Form(
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 16,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                spacing: 8,
                 children: [
-                  Image.asset("assets/logo.png"),
                   Container(
                       padding: EdgeInsetsDirectional.all(4),
                       width: MediaQuery.sizeOf(context).width * 0.8,
@@ -101,16 +102,18 @@ class LoginView extends LoginViewModel {
                               [TextDecoration.underline]),
                           fontSize: MediaQuery.sizeOf(context).height * 0.015),
                     ),
-                  )
+                  ),
+                 
                 ],
               )),
               Text(
                 "V 1.0.0",
                 style: TextStyle(
-                    color: Colors.white,
+                    color: primaryColorVariant,
                     fontWeight: FontWeight.bold,
                     fontSize: MediaQuery.sizeOf(context).height * 0.015),
               )
+              
             ],
           ),
         ),
