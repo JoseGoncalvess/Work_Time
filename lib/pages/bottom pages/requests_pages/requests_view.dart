@@ -38,10 +38,14 @@ class RequestsView extends RequestsViewModel {
                 curve: Curves.fastLinearToSlowEaseIn,
                 duration: Duration(seconds: 1),
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        color: primaryColorVariant,
-                        width: 1,
-                        style: BorderStyle.solid),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12)),
                 height: indexSelect == index
