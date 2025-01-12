@@ -26,14 +26,14 @@ class CustomTextHoursCard extends StatelessWidget {
           style: TextStyle(
               color: colorsHours ?? primaryColor,
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.sizeOf(context).height * 0.022),
+              fontSize: MediaQuery.sizeOf(context).width * 0.04),
         ),
         Text(
           "Horas $typeTimeText",
           style: TextStyle(
               color: colorsTitleText ?? backgroudColor,
               fontWeight: FontWeight.bold,
-              fontSize: MediaQuery.sizeOf(context).height * 0.022),
+              fontSize: MediaQuery.sizeOf(context).width * 0.04),
         ),
       ],
     );

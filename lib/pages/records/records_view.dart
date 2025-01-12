@@ -92,7 +92,7 @@ class RecordsView extends RecorsViewModel {
                               indent: 8,
                             ),
                             SizedBox(
-                              width: MediaQuery.sizeOf(context).width * 0.5,
+                              width: MediaQuery.sizeOf(context).width * 0.51,
                               height: MediaQuery.sizeOf(context).height * 0.1,
                               child: Column(
                                 spacing: 4,

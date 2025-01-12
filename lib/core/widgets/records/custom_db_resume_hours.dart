@@ -49,7 +49,7 @@ class CustomDbResumeHours extends StatelessWidget {
                 style: TextStyle(
                     color: secundaryColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: MediaQuery.sizeOf(context).height * 0.03)))
+                    fontSize: MediaQuery.sizeOf(context).width * 0.03)))
       ],
     );
   }

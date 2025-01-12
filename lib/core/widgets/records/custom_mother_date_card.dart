@@ -12,7 +12,7 @@ class CustomMotherDateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.sizeOf(context).width * 0.2,
-      height: MediaQuery.sizeOf(context).height * 0.1,
+      height: MediaQuery.sizeOf(context).height * 0.12,
       child: Column(
         spacing: 4,
         crossAxisAlignment: CrossAxisAlignment.center,
