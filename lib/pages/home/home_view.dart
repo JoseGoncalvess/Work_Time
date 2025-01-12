@@ -132,10 +132,12 @@ class HomeView extends HomeViewModel {
           iconSpacing: MediaQuery.sizeOf(context).width * 0.16,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        
         floatingActionButton: SizedBox(
           width: 100,
           height: 90,
           child: FloatingActionButton(
+
             backgroundColor: primaryColor,
             onPressed: () {},
             child: Column(
