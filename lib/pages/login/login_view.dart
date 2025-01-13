@@ -19,93 +19,105 @@ class LoginView extends LoginViewModel {
             children: [
               Image.asset("assets/logo.png", scale: 1.5),
               Form(
+                  key: formKey,
                   child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                spacing: 8,
-                children: [
-                  Container(
-                      padding: EdgeInsetsDirectional.all(4),
-                      width: MediaQuery.sizeOf(context).width * 0.8,
-                      height: MediaQuery.sizeOf(context).height * 0.1,
-                      child: TextField(
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              filled: true,
-                              fillColor:
-                                  const Color.fromARGB(255, 255, 255, 255),
-                              hintText: "Insira sua matricula",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.grey)))),
-                  Container(
-                      padding: EdgeInsetsDirectional.all(4),
-                      width: MediaQuery.sizeOf(context).width * 0.8,
-                      height: MediaQuery.sizeOf(context).height * 0.1,
-                      child: TextField(
-                          obscureText: obscuredPassword,
-                          obscuringCharacter: "*",
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                              suffixIconColor: obscuredPassword
-                                  ? primaryColorVariant
-                                  : Colors.grey,
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      obscuredPassword = !obscuredPassword;
-                                    });
-                                  },
-                                  icon: Icon(obscuredPassword
-                                      ? Icons.visibility_off
-                                      : Icons.visibility)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              filled: true,
-                              fillColor:
-                                  const Color.fromARGB(255, 255, 255, 255),
-                              hintText: "Insira sua Senha",
-                              hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.grey)))),
-                  SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 0.4,
-                    height: MediaQuery.sizeOf(context).height * 0.07,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Home(),
-                            ));
-                      },
-                      style: ButtonStyle(
-                          backgroundColor:
-                              WidgetStateProperty.all(optionalColor)),
-                      child: Text(
-                        "Login",
-                        style: TextStyle(color: Colors.white),
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    spacing: 8,
+                    children: [
+                      Container(
+                          padding: EdgeInsetsDirectional.all(4),
+                          width: MediaQuery.sizeOf(context).width * 0.8,
+                          height: MediaQuery.sizeOf(context).height * 0.1,
+                          child: TextFormField(
+                              controller: matriculaController,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [matriculaInputFormatter],
+                              validator: (value) =>
+                                  matriculaInputFormatter.validate(value ?? ""),
+                              decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12)),
+                                  filled: true,
+                                  fillColor:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  hintText: "Insira sua matricula",
+                                  hintStyle: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.grey)))),
+                      Container(
+                          padding: EdgeInsetsDirectional.all(4),
+                          width: MediaQuery.sizeOf(context).width * 0.8,
+                          height: MediaQuery.sizeOf(context).height * 0.1,
+                          child: TextFormField(
+                              controller: passwordController,
+                              obscureText: obscuredPassword,
+                              obscuringCharacter: "*",
+                              keyboardType: TextInputType.visiblePassword,
+                              inputFormatters: [passwordInputFormatter],
+                              validator: (value) =>
+                                  passwordInputFormatter.validate(value ?? ""),
+                              decoration: InputDecoration(
+                                  suffixIconColor: obscuredPassword
+                                      ? primaryColorVariant
+                                      : Colors.grey,
+                                  suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          obscuredPassword = !obscuredPassword;
+                                        });
+                                      },
+                                      icon: Icon(obscuredPassword
+                                          ? Icons.visibility_off
+                                          : Icons.visibility)),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12)),
+                                  filled: true,
+                                  fillColor:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  hintText: "Insira sua Senha",
+                                  hintStyle: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.grey)))),
+                      SizedBox(
+                        width: MediaQuery.sizeOf(context).width * 0.4,
+                        height: MediaQuery.sizeOf(context).height * 0.07,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // login();
+                            if (formKey.currentState?.validate() ?? false) {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Home(),
+                                  ));
+                            }
+                          },
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  WidgetStateProperty.all(optionalColor)),
+                          child: Text(
+                            "Login",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    behavior: HitTestBehavior.deferToChild,
-                    onTap: () {},
-                    child: Text(
-                      "Algo de errado? Contate o RH da Sua empresa!",
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.combine(
-                              [TextDecoration.underline]),
-                          fontSize: MediaQuery.sizeOf(context).height * 0.015),
-                    ),
-                  ),
-                 
-                ],
-              )),
+                      GestureDetector(
+                        behavior: HitTestBehavior.deferToChild,
+                        onTap: () {},
+                        child: Text(
+                          "Algo de errado? Contate o RH da Sua empresa!",
+                          style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.combine(
+                                  [TextDecoration.underline]),
+                              fontSize:
+                                  MediaQuery.sizeOf(context).height * 0.015),
+                        ),
+                      ),
+                    ],
+                  )),
               Text(
                 "V 1.0.0",
                 style: TextStyle(
@@ -113,7 +125,6 @@ class LoginView extends LoginViewModel {
                     fontWeight: FontWeight.bold,
                     fontSize: MediaQuery.sizeOf(context).height * 0.015),
               )
-              
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:work_time/core/consts.dart';
 import 'package:work_time/pages/login/login.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }
 
