@@ -20,7 +20,9 @@ class PerfilView extends PerfilViewModel {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: SizedBox(
+      body: isload
+          ? CircularProgressIndicator()
+          : SizedBox(
         width: MediaQuery.sizeOf(context).width,
         height: MediaQuery.sizeOf(context).height,
         child: Column(
@@ -38,7 +40,7 @@ class PerfilView extends PerfilViewModel {
                       imgSrc: "assets/logo.png",
                       borderColor: Colors.red),
                   Text(
-                    "José Gonçalves da Silva Filho",
+                          funcionario!.name,
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: MediaQuery.sizeOf(context).height * 0.03),
@@ -49,19 +51,26 @@ class PerfilView extends PerfilViewModel {
             Expanded(
               child: SizedBox(
                 width: MediaQuery.sizeOf(context).width,
-                height: MediaQuery.sizeOf(context).height * 0.7,
-                // color: Colors.amber,
+                      height: MediaQuery.sizeOf(context).height * 0.7,
                 child: Column(
                   spacing: 8,
                   children: [
                     CustomFiledInfo(
-                        titleInfo: "Cargo", valueInfo: "Aux. Administrativo"),
+                              titleInfo: "Cargo",
+                              valueInfo: funcionario!.cargo),
                     CustomFiledInfo(
-                        titleInfo: "Matricula", valueInfo: "12345f"),
+                              titleInfo: "Matricula",
+                              valueInfo: funcionario!.matricula),
                     CustomFiledInfo(
-                        titleInfo: "E-mail", valueInfo: "contabil@gmail.com"),
+                              isEdited: isEdited,
+                              controller: emailController,
+                              titleInfo: "E-mail",
+                              valueInfo: funcionario!.email),
                     CustomFiledInfo(
-                        titleInfo: "Telefone", valueInfo: "87 - 9 91234567"),
+                              isEdited: isEdited,
+                              controller: numberController,
+                              titleInfo: "Telefone",
+                              valueInfo: funcionario!.telefone),
                   ],
                 ),
               ),
@@ -71,8 +80,10 @@ class PerfilView extends PerfilViewModel {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColorVariant,
-        onPressed: () {},
-        child: Icon(color: Colors.white, Icons.edit_note_rounded),
+        onPressed: () => editFuncionario(),
+        child: Icon(
+            color: Colors.white,
+            isEdited ? Icons.save_as_rounded : Icons.edit_note_rounded),
       ),
     );
   }

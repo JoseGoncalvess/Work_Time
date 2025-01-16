@@ -1,3 +1,49 @@
-import 'package:flutter/material.dart';
 
-abstract class PerfilViewModel extends State {}
+import 'package:flutter/material.dart';
+import 'package:work_time/core/domain/models/funcionario.dart';
+import '../../../core/services/local repository/local_funcionario.dart';
+import '../../../core/services/local repository/local_repository.dart';
+import 'perfil.dart';
+
+abstract class PerfilViewModel extends State<Perfil> {
+  bool isEdited = false;
+  bool isload = false;
+  LocalFuncionario local =
+      LocalFuncionario(localRepository: LocalRepository.instance);
+  Funcionario? funcionario;
+
+  TextEditingController numberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    loadFuncionario();
+  }
+
+  void loadFuncionario() async {
+    local.loadFuncionario().then(
+      (value) {
+        funcionario = value;
+        setState(() {
+          isload = true;
+        });
+      },
+    );
+  }
+
+  void updateFuncionario() {
+    Funcionario newFuncionario = funcionario!.copyWith(
+      telefone: numberController.text,
+      email: emailController.text,
+    );
+
+    local.updateFuncionario(newFuncionario);
+  }
+
+  void editFuncionario() {
+    setState(() {
+      isEdited = !isEdited;
+    });
+  }
+}

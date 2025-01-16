@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class Funcionario {
@@ -7,13 +6,22 @@ class Funcionario {
   final String password;
   final String matricula;
   final int status;
+  final String email;
+  final String cargo;
+  final String telefone;
+
+
   Funcionario({
     required this.id,
     required this.name,
     required this.password,
     required this.matricula,
     required this.status,
+    required this.email,
+    required this.cargo,
+    required this.telefone,
   });
+
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -22,6 +30,9 @@ class Funcionario {
       'password': password,
       'matricula': matricula,
       'status': status,
+      'email': email,
+      'cargo': cargo,
+      'telefone': telefone,
     };
   }
 
@@ -32,8 +43,36 @@ class Funcionario {
       password: map['password'],
       matricula: map['matricula'],
       status: map['status'],
+      email: map['email'],
+      cargo: map['cargo'],
+      telefone: map['telefone'],
     );
   }
+
+
+Funcionario copyWith({
+    int? id,
+    String? name,
+    String? password,
+    String? matricula,
+    int? status,
+    String? email,
+    String? cargo,
+    String? telefone,
+  }) {
+    return Funcionario(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      password: password ?? this.password,
+      matricula: matricula ?? this.matricula,
+      status: status ?? this.status,
+      email: email ?? this.email,
+      cargo: cargo ?? this.cargo,
+      telefone: telefone ?? this.telefone,
+    );
+  }
+
+
 
   String toJson() => json.encode(toMap());
 
