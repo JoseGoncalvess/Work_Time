@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:work_time/core/consts.dart';
 import 'package:work_time/pages/home/home_view_model.dart';
-import '../../core/widgets/custom_card_pointer_register.dart';
+import '../../core/helpers/date_formater.dart';
 import '../../core/widgets/custom_drawer/custom_drawer.dart';
 import '../../core/widgets/custom_home_app_bar.dart';
 import '../../core/widgets/custom_bottom_vavigator.dart';
@@ -50,50 +50,71 @@ class HomeView extends HomeViewModel {
                       ),
                     ),
                     SizedBox(
-                        width: MediaQuery.sizeOf(context).width,
-                        height: MediaQuery.sizeOf(context).height * 0.15,
-                        child: pointersDay.isNotEmpty
-                            ? CustomCardPointerRegister(
-                                registers: pointersDay,
-                              )
-                            : Row(
-                                spacing: 8,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.work_history,
-                                    color: primaryColor,
-                                  ),
-                                  Text(
-                                    "Inicie a sua Jornada de Trabalho",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize:
-                                            MediaQuery.sizeOf(context).width *
-                                                0.05),
-                                  ),
+                      width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height * 0.15,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 4,
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                boxShadow: <BoxShadow>[
+                                  BoxShadow(
+                                      color: const Color(0x489E9E9E),
+                                      blurRadius: 5,
+                                      spreadRadius: 1,
+                                      blurStyle: BlurStyle.outer)
                                 ],
-                              )),
-                    Visibility(
-                      visible: pointersDay.isNotEmpty,
-                      child: Row(
-                        spacing: 5,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Text("Registros de Ponto",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize:
-                                        MediaQuery.sizeOf(context).height *
-                                            0.03)),
+                                color:
+                                    index.isEven ? primaryColor : optionalColor,
+                                borderRadius: BorderRadius.circular(12)),
+                            width: MediaQuery.sizeOf(context).width * 0.33,
+                            height: MediaQuery.sizeOf(context).height * 0.01,
+                            child: Column(
+                              spacing: 3,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  index.isEven ? Icons.logout : Icons.login,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  index.isEven ? "Saida" : "Entrada",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  DateFormater.formaterDate
+                                      .format(DateTime.now()),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: secundaryColorVariant),
+                                )
+                              ],
+                            ),
                           ),
-                          Icon(Icons.arrow_forward)
-                        ],
+                        ),
                       ),
+                    ),
+                    Row(
+                      spacing: 5,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Text("Registros de Ponto",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: MediaQuery.sizeOf(context).height *
+                                      0.03)),
+                        ),
+                        Icon(Icons.arrow_forward)
+                      ],
                     ),
                   ],
                 ),
@@ -111,10 +132,12 @@ class HomeView extends HomeViewModel {
           iconSpacing: MediaQuery.sizeOf(context).width * 0.16,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        
         floatingActionButton: SizedBox(
           width: 100,
           height: 90,
           child: FloatingActionButton(
+
             backgroundColor: primaryColor,
             onPressed: () {},
             child: Column(

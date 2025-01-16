@@ -8,6 +8,8 @@ class CustomFiledInfo extends StatelessWidget {
   final double? percentSizeValue;
   final Color? colorTitle;
   final Color? colorValue;
+  final bool? isEdited;
+  final TextEditingController? controller;
   const CustomFiledInfo(
       {super.key,
       required this.titleInfo,
@@ -15,7 +17,9 @@ class CustomFiledInfo extends StatelessWidget {
       required this.valueInfo,
       this.percentSizeValue = 0.022,
       this.colorTitle,
-      this.colorValue});
+      this.colorValue,
+      this.isEdited = false,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,7 @@ class CustomFiledInfo extends StatelessWidget {
                     MediaQuery.sizeOf(context).height * percentSizeTitle!),
           ),
           TextField(
+            controller: controller,
             style: TextStyle(
                 fontWeight: FontWeight.w500,
                 color: colorValue ?? secundaryColor,
@@ -47,7 +52,7 @@ class CustomFiledInfo extends StatelessWidget {
                         color: primaryColor,
                         width: 4)),
                 hintText: valueInfo),
-            enabled: false,
+            enabled: isEdited,
           ),
         ],
       ),

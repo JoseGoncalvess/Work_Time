@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:work_time/core/consts.dart';
 import 'package:work_time/pages/login/login_view_model.dart';
 
+import '../home/home.dart';
+
 class LoginView extends LoginViewModel {
   @override
   Widget build(BuildContext context) {
@@ -83,14 +85,14 @@ class LoginView extends LoginViewModel {
                         height: MediaQuery.sizeOf(context).height * 0.07,
                         child: ElevatedButton(
                           onPressed: () {
-                            // ;
                             if (formKey.currentState?.validate() ?? false) {
                               login();
-                              // Navigator.pushReplacement(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => Home(),
-                              //     ));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Home(),
+                                  ));
+                            
                             }
                           },
                           style: ButtonStyle(
