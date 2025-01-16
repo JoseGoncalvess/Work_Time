@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:work_time/core/consts.dart';
-import 'package:work_time/pages/home/home.dart';
 import 'package:work_time/pages/login/login_view_model.dart';
 
 class LoginView extends LoginViewModel {
@@ -84,13 +83,14 @@ class LoginView extends LoginViewModel {
                         height: MediaQuery.sizeOf(context).height * 0.07,
                         child: ElevatedButton(
                           onPressed: () {
-                            // login();
+                            // ;
                             if (formKey.currentState?.validate() ?? false) {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Home(),
-                                  ));
+                              login();
+                              // Navigator.pushReplacement(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => Home(),
+                              //     ));
                             }
                           },
                           style: ButtonStyle(

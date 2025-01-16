@@ -21,3 +21,6 @@ const List<Widget> pages = [
   RecordsPage(),
   UpdatePassword()
 ];
+
+final String keyFuncionario = "e380ef9b0e027727b52a2db3b9e590be";
+final String keyPonto = "ef0080757852d4c3b59254ee3f5007ca";
