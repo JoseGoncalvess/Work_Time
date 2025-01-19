@@ -10,7 +10,6 @@ class Funcionario {
   final String cargo;
   final String telefone;
 
-
   Funcionario({
     required this.id,
     required this.name,
@@ -22,6 +21,16 @@ class Funcionario {
     required this.telefone,
   });
 
+  Funcionario.isEmpyt({
+    this.id = 0,
+    this.name = "",
+    this.password = "",
+    this.matricula = "",
+    this.status = 0,
+    this.email = "",
+    this.cargo = "",
+    this.telefone = "",
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -49,8 +58,7 @@ class Funcionario {
     );
   }
 
-
-Funcionario copyWith({
+  Funcionario copyWith({
     int? id,
     String? name,
     String? password,
@@ -71,8 +79,6 @@ Funcionario copyWith({
       telefone: telefone ?? this.telefone,
     );
   }
-
-
 
   String toJson() => json.encode(toMap());
 

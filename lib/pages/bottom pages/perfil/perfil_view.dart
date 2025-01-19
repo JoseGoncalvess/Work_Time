@@ -21,70 +21,73 @@ class PerfilView extends PerfilViewModel {
         ),
       ),
       body: isload
-          ? CircularProgressIndicator()
-          : SizedBox(
-        width: MediaQuery.sizeOf(context).width,
-        height: MediaQuery.sizeOf(context).height,
-        child: Column(
-          children: [
-            SizedBox(
+          ? SizedBox(
               width: MediaQuery.sizeOf(context).width,
-              height: MediaQuery.sizeOf(context).height * 0.2,
+              height: MediaQuery.sizeOf(context).height,
               child: Column(
-                spacing: 4,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomCircularAvatar(
-                      sizeRadius: 45,
-                      imgSrc: "assets/logo.png",
-                      borderColor: Colors.red),
-                  Text(
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: MediaQuery.sizeOf(context).height * 0.2,
+                    child: Column(
+                      spacing: 4,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomCircularAvatar(
+                            sizeRadius: 45,
+                            imgSrc: "assets/logo.png",
+                            borderColor: Colors.red),
+                        Text(
                           funcionario!.name,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: MediaQuery.sizeOf(context).height * 0.03),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize:
+                                  MediaQuery.sizeOf(context).height * 0.03),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: SizedBox(
-                width: MediaQuery.sizeOf(context).width,
+                  Expanded(
+                    child: SizedBox(
+                      width: MediaQuery.sizeOf(context).width,
                       height: MediaQuery.sizeOf(context).height * 0.7,
-                child: Column(
-                  spacing: 8,
-                  children: [
-                    CustomFiledInfo(
+                      child: Column(
+                        spacing: 8,
+                        children: [
+                          CustomFiledInfo(
                               titleInfo: "Cargo",
                               valueInfo: funcionario!.cargo),
-                    CustomFiledInfo(
+                          CustomFiledInfo(
                               titleInfo: "Matricula",
                               valueInfo: funcionario!.matricula),
-                    CustomFiledInfo(
+                          CustomFiledInfo(
                               isEdited: isEdited,
                               controller: emailController,
                               titleInfo: "E-mail",
                               valueInfo: funcionario!.email),
-                    CustomFiledInfo(
+                          CustomFiledInfo(
                               isEdited: isEdited,
                               controller: numberController,
                               titleInfo: "Telefone",
                               valueInfo: funcionario!.telefone),
-                  ],
-                ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             )
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: primaryColorVariant,
-        onPressed: () => editFuncionario(),
-        child: Icon(
-            color: Colors.white,
-            isEdited ? Icons.save_as_rounded : Icons.edit_note_rounded),
-      ),
+          : Center(child: CircularProgressIndicator()),
+      floatingActionButton: isload
+          ? FloatingActionButton(
+              backgroundColor: primaryColorVariant,
+              onPressed: () => editFuncionario(),
+              child: Icon(
+                  color: Colors.white,
+                  isEdited ? Icons.save_as_rounded : Icons.edit_note_rounded),
+            )
+          : null,
     );
   }
 }

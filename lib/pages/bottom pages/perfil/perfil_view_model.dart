@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:work_time/core/domain/models/funcionario.dart';
 import '../../../core/services/local repository/local_funcionario.dart';
@@ -10,7 +9,7 @@ abstract class PerfilViewModel extends State<Perfil> {
   bool isload = false;
   LocalFuncionario local =
       LocalFuncionario(localRepository: LocalRepository.instance);
-  Funcionario? funcionario;
+  Funcionario? funcionario = Funcionario.isEmpyt();
 
   TextEditingController numberController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -22,14 +21,17 @@ abstract class PerfilViewModel extends State<Perfil> {
   }
 
   void loadFuncionario() async {
+    isload = false;
     local.loadFuncionario().then(
       (value) {
-        funcionario = value;
         setState(() {
-          isload = true;
+          funcionario = value;
         });
       },
     );
+    setState(() {
+      isload = !isload;
+    });
   }
 
   void updateFuncionario() {
