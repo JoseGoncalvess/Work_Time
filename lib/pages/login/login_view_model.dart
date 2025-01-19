@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:work_time/core/services/client/client_funcionario.dart';
+import 'package:work_time/core/services/client/impl/client_funcionario.dart';
 import 'package:work_time/core/services/local%20repository/local_funcionario.dart';
 import 'package:work_time/core/services/local%20repository/local_repository.dart';
 import 'package:work_time/pages/login/login.dart';
