@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:work_time/core/domain/models/funcionario.dart';
 
 import 'custom_circular_avatar.dart';
 
 class CustomHomeAppBar extends StatelessWidget implements PreferredSize {
   final Color backgroundColor;
   final double heigthWidget;
+  final Funcionario funcionario;
   const CustomHomeAppBar(
-      {super.key, required this.backgroundColor, required this.heigthWidget});
+      {super.key,
+      required this.backgroundColor,
+      required this.heigthWidget,
+      required this.funcionario});
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +44,17 @@ class CustomHomeAppBar extends StatelessWidget implements PreferredSize {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("JOSÉ GONÇALVES DA SILVA FILHO ",
+                    Text(funcionario.name,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize:
                                 MediaQuery.sizeOf(context).width * 0.035)),
-                    Text("AUX. CONTABIL ",
+                    Text(funcionario.cargo,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize:
                                 MediaQuery.sizeOf(context).width * 0.027)),
-                    Text("1234-345-893",
+                    Text(funcionario.matricula,
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: MediaQuery.sizeOf(context).width * 0.025))

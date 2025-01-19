@@ -17,6 +17,7 @@ class HomeView extends HomeViewModel {
     return SafeArea(
       child: Scaffold(
         appBar: CustomHomeAppBar(
+          funcionario: funcionario,
           heigthWidget: MediaQuery.of(context).size.height * 0.12,
           backgroundColor: Colors.white,
         ),
@@ -55,7 +56,7 @@ class HomeView extends HomeViewModel {
                       child: ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        itemCount: 4,
+                        itemCount: pointersDay.length,
                         itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Container(
@@ -132,12 +133,10 @@ class HomeView extends HomeViewModel {
           iconSpacing: MediaQuery.sizeOf(context).width * 0.16,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        
         floatingActionButton: SizedBox(
           width: 100,
           height: 90,
           child: FloatingActionButton(
-
             backgroundColor: primaryColor,
             onPressed: () {},
             child: Column(
