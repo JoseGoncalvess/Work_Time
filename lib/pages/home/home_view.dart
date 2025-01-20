@@ -68,8 +68,11 @@ class HomeView extends HomeViewModel {
                                       spreadRadius: 1,
                                       blurStyle: BlurStyle.outer)
                                 ],
-                                color:
-                                    index.isEven ? primaryColor : optionalColor,
+                                color: pointersDay[index]
+                                        .titleRegister
+                                        .contains("saida")
+                                    ? primaryColor
+                                    : optionalColor,
                                 borderRadius: BorderRadius.circular(12)),
                             width: MediaQuery.sizeOf(context).width * 0.33,
                             height: MediaQuery.sizeOf(context).height * 0.01,
@@ -79,18 +82,21 @@ class HomeView extends HomeViewModel {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  index.isEven ? Icons.logout : Icons.login,
+                                  pointersDay[index]
+                                          .titleRegister
+                                          .contains("saida")
+                                      ? Icons.logout
+                                      : Icons.login,
                                   color: Colors.white,
                                 ),
                                 Text(
-                                  index.isEven ? "Saida" : "Entrada",
+                                  pointersDay[index].titleRegister,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       color: Colors.white),
                                 ),
                                 Text(
-                                  DateFormater.formaterDate
-                                      .format(DateTime.now()),
+                                  "${pointersDay[index].timeRegister.hour}:${pointersDay[index].timeRegister.minute}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       color: secundaryColorVariant),

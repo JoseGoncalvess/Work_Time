@@ -2,11 +2,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:work_time/core/domain/models/register.dart';
 
 import '../../helpers/date_formater.dart';
 import 'funcionario.dart';
 
 class Ponto {
+  final int pontoId;
   final DateTime? dateEntrada;
   final TimeOfDay? entrada;
   final TimeOfDay? saidaIntervalo;
@@ -19,6 +21,7 @@ class Ponto {
   int motivo = 0;
 
   Ponto({
+    required this.pontoId,
     required this.dateEntrada,
     required this.entrada,
     required this.saidaIntervalo,
@@ -33,6 +36,7 @@ class Ponto {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      "pontoId": pontoId,
       "dataEntrada": dateEntrada.toString(),
       'entrada': entrada.toString(),
       'saidaIntervalo': saidaIntervalo.toString(),
@@ -48,6 +52,7 @@ class Ponto {
 
   factory Ponto.fromMap(Map<String, dynamic> map) {
     return Ponto(
+      pontoId: map["id"],
       dateEntrada: map['dataEntrada'] == null
           ? null
           : DateTime.parse(map['dataEntrada']),
@@ -75,6 +80,38 @@ class Ponto {
           : DateFormater.parseTimeOfDay(map['totalHorarioExtra']),
       motivo: map['motivo'],
     );
+  }
+
+  List<Register> getRegisterDay() {
+    List<Register> tempListRegister = [];
+
+    if (entrada != null) {
+      tempListRegister.add(Register(
+          titleRegister: "Entrada",
+          timeRegister: entrada!,
+          idRegister: pontoId));
+    }
+
+    if (saidaIntervalo != null) {
+      tempListRegister.add(Register(
+          titleRegister: "saida Intervalo",
+          timeRegister: saidaIntervalo!,
+          idRegister: pontoId));
+    }
+
+    if (retornoIntervalo != null) {
+      tempListRegister.add(Register(
+          titleRegister: "Retorno Intervalo",
+          timeRegister: retornoIntervalo!,
+          idRegister: pontoId));
+    }
+
+    if (saida != null) {
+      tempListRegister.add(Register(
+          titleRegister: "Saida", timeRegister: saida!, idRegister: pontoId));
+    }
+
+    return tempListRegister;
   }
 
   String toJson() => json.encode(toMap());

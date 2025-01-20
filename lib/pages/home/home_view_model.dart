@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:work_time/core/domain/models/ponto.dart';
+import 'package:work_time/core/domain/models/register.dart';
 import 'package:work_time/core/services/client/impl/clinet_ponto.dart';
 
 import '../../core/domain/models/funcionario.dart';
@@ -14,7 +15,7 @@ abstract class HomeViewModel extends State {
   final ClinetPonto clinetPonto = ClinetPonto();
   Funcionario funcionario = Funcionario.isEmpyt();
 
-  List pointersDay = [9, 8];
+  List<Register> pointersDay = [];
 
   @override
   void initState() {
@@ -35,7 +36,11 @@ abstract class HomeViewModel extends State {
 
   void _loadRegisterDay() {
     clinetPonto.getRegisterDay(funcionario.id, DateTime.now()).then(
-          (Ponto value) => log(value.toJson()),
-        );
+      (Ponto value) {
+        setState(() {
+          pointersDay = value.getRegisterDay();
+        });
+      },
+    );
   }
 }
